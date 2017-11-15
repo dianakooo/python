@@ -2,7 +2,6 @@
 
 word = input("Введите слово: ")
 
-text = 0
 a = 1
 num = len(word)
 
