@@ -1,0 +1,13 @@
+def lines_div (fname):
+    with open (fname, encoding='utf-8') as f:
+        lines_raw=f.readlines()
+    lines_lengths=[]
+    for line in lines_raw:
+        clear_line = line.strip()
+        if clear_line:
+            print(len(clear_line), clear_line)
+            lines_lengthd.append(len(clear_line))
+
+        return min(lines_lengths)
+
+min_1 = lines.div('text')
