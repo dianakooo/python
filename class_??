@@ -1,0 +1,118 @@
+>>> s = "abracadabra"
+>>> "abra" in s
+True
+>>> s.find("abra")
+0
+>>> import re
+>>> results = re.findall("abra", s)
+>>> results
+['abra', 'abra']
+>>> s
+'abracadabra'
+>>> results = re.findall("a.", s)
+>>> results
+['ab', 'ac', 'ad', 'ab']
+>>> results = re.findall("a..", s)
+>>> results
+['abr', 'aca', 'abr']
+>>> result = re.findall("A..", s)
+>>> result
+[]
+>>> results = re.findall("ab?", s) #после а может стоять в, а может не стоять
+>>> results
+['ab', 'a', 'a', 'ab', 'a']
+>>> results = re.findall("ab+", s)
+>>> results
+['ab', 'ab']
+>>> s += 'abbbabb'
+>>> s
+'abracadabraabbbabb'
+>>> results = re.findall ("ab+", s)
+>>> results
+['ab', 'ab', 'abbb', 'abb']
+>>> results = re.findall("ab{2,3}", s)
+>>> results
+['abbb', 'abb']
+>>> results = re.findall("ab{,2}, s)
+		     
+SyntaxError: EOL while scanning string literal
+>>> results = re.findall("ab{,2}", s)
+>>> results
+['ab', 'a', 'a', 'ab', 'a', 'abb', 'abb']
+>>> results = re.findall("ab{2,", s)
+>>> results
+[]
+>>> 
+KeyboardInterrupt
+>>> results = re.findall("ab{2,}", s)
+>>> results
+['abbb', 'abb']
+>>> results = re.findall("(ab)+", s)
+>>> results
+['ab', 'ab', 'ab', 'ab']
+>>> results = re.findall("(ab){2,}", s)
+>>> results
+[]
+>>> results = re.findall("bmny", s)
+>>> results
+[]
+>>> results = re.findall("[bmny]", s)
+>>> results
+['b', 'b', 'b', 'b', 'b', 'b', 'b']
+>>> results = re.findall("[bmny]+", s)
+>>> results
+['b', 'b', 'bbb', 'bb']
+>>> results = re.findall("[bmny]{2,}", s)
+>>> results
+['bbb', 'bb']
+>>> sent = "Well, somebody told me that you had a boyfried that looked like a girlfriend then i don't know the lyrics it's not confidential i've got potential rushing arushing around"
+>>> results = re.findall("s.+", sent)
+>>> results
+["somebody told me that you had a boyfried that looked like a girlfriend then i don't know the lyrics it's not confidential i've got potential rushing arushing around"]
+>>> results = re.findall("s.+ ", s)
+>>> results
+[]
+>>> results = re.findall("s.+ ", sent)
+>>> results
+["somebody told me that you had a boyfried that looked like a girlfriend then i don't know the lyrics it's not confidential i've got potential rushing arushing "]
+>>> results = re.findall(" s.+ ", sent)
+>>> results
+[" somebody told me that you had a boyfried that looked like a girlfriend then i don't know the lyrics it's not confidential i've got potential rushing arushing "]
+>>> re.findall("[^abr]", s)
+['c', 'd']
+>>> re.findall(" s[^ ]+", s)
+[]
+>>> re.findall(" s[^ ]+", sent)
+[' somebody']
+>>> re.findall("^W.{3}", sent)
+['Well']
+>>> re.findall("^W.{7}", sent")
+	   
+SyntaxError: EOL while scanning string literal
+>>> re.findall("^W.{8}", sent)
+['Well, som']
+>>> re.findall("[a-zA_Z]+", sent)
+['ell', 'somebody', 'told', 'me', 'that', 'you', 'had', 'a', 'boyfried', 'that', 'looked', 'like', 'a', 'girlfriend', 'then', 'i', 'don', 't', 'know', 'the', 'lyrics', 'it', 's', 'not', 'confidential', 'i', 've', 'got', 'potential', 'rushing', 'arushing', 'around']
+>>> re.findall("[a-zA-Z0-9_]+", sent)
+['Well', 'somebody', 'told', 'me', 'that', 'you', 'had', 'a', 'boyfried', 'that', 'looked', 'like', 'a', 'girlfriend', 'then', 'i', 'don', 't', 'know', 'the', 'lyrics', 'it', 's', 'not', 'confidential', 'i', 've', 'got', 'potential', 'rushing', 'arushing', 'around']
+>>> re.findall("\w+", sent)
+['Well', 'somebody', 'told', 'me', 'that', 'you', 'had', 'a', 'boyfried', 'that', 'looked', 'like', 'a', 'girlfriend', 'then', 'i', 'don', 't', 'know', 'the', 'lyrics', 'it', 's', 'not', 'confidential', 'i', 've', 'got', 'potential', 'rushing', 'arushing', 'around']
+>>> re.findall("\W+", sent)
+[', ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', "'", ' ', ' ', ' ', ' ', "'", ' ', ' ', ' ', "'", ' ', ' ', ' ', ' ', ' ']
+>>> re.findall("[\w-]+", sent)
+['Well', 'somebody', 'told', 'me', 'that', 'you', 'had', 'a', 'boyfried', 'that', 'looked', 'like', 'a', 'girlfriend', 'then', 'i', 'don', 't', 'know', 'the', 'lyrics', 'it', 's', 'not', 'confidential', 'i', 've', 'got', 'potential', 'rushing', 'arushing', 'around']
+>>> re.findall("[.?!]+", sent)
+[]
+>>> re.findall("\d", sent)
+[]
+>>> sent += ' 2017 2018 2019 '
+>>> re.findall("\d+", sent)
+['2017', '2018', '2019']
+>>> re.findall("\D+", sent)
+["Well, somebody told me that you had a boyfried that looked like a girlfriend then i don't know the lyrics it's not confidential i've got potential rushing arushing around ", ' ', ' ', ' ']
+>>> re.findall("\s\w+\s", sent)
+[' somebody ', ' me ', ' you ', ' a ', ' that ', ' like ', ' girlfriend ', ' i ', ' know ', ' lyrics ', ' not ', ' got ', ' rushing ', ' around ', ' 2018 ']
+>>> re.findall("\ss.*", sent)
+[" somebody told me that you had a boyfried that looked like a girlfriend then i don't know the lyrics it's not confidential i've got potential rushing arushing around 2017 2018 2019 "]
+>>> re.findall("\ss.*\s", sent)
+[" somebody told me that you had a boyfried that looked like a girlfriend then i don't know the lyrics it's not confidential i've got potential rushing arushing around 2017 2018 2019 "]
