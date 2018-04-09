@@ -1,3 +1,4 @@
+# вариант 2
 import re
 
 def opening(filename):
