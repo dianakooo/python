@@ -12,10 +12,10 @@ def searching(text):
     return number
 
 def main():
-    isl = opening("kontrosha.html")
+    isl = opening("contr.html")
     lines = searching(isl)
     lines = str(lines)
-    with open("kr.txt", "w", encoding='utf-8') as r:
+    with open("number_of_lines.txt", "w", encoding='utf-8') as r:
         r.write(lines)
     
 if __name__ == "__main__":
