@@ -1,0 +1,123 @@
+>>> for i in [1, 2, 3, 4]:
+	pass
+
+>>> sq = []
+>>> for i in [1, 2, 3, 4]:
+	sq.append(i**2)
+
+	
+>>> sq
+[1, 4, 9, 16]
+>>> sq_again = [i for i in [1, 2, 3, 4]]
+>>> sq_again
+[1, 2, 3, 4]
+>>> sq_again = [i for i in [1, 2, 3, 4]]
+>>> sq_again
+[1, 2, 3, 4]
+>>> sq_again = [i**2 for i in [1, 2, 3, 4]]
+>>> sq_again
+[1, 4, 9, 16]
+>>> 
+>>> text = [word_title() for word in 'на улице жара'.split]
+Traceback (most recent call last):
+  File "<pyshell#15>", line 1, in <module>
+    text = [word_title() for word in 'на улице жара'.split]
+TypeError: 'builtin_function_or_method' object is not iterable
+>>> text = [word_title() for word in 'на улице жара'.split()]
+Traceback (most recent call last):
+  File "<pyshell#16>", line 1, in <module>
+    text = [word_title() for word in 'на улице жара'.split()]
+  File "<pyshell#16>", line 1, in <listcomp>
+    text = [word_title() for word in 'на улице жара'.split()]
+NameError: name 'word_title' is not defined
+>>> text = [word.title() for word in 'на улице жара'.split()]
+>>> text
+['На', 'Улице', 'Жара']
+>>> ''.join([sym+' ' for sym in 'abcdef'])
+'a b c d e f '
+>>> _
+'a b c d e f '
+>>> new_dic = {i: i**2 for i in [1, 2, 3, 4]}
+>>> new_dic
+{1: 1, 2: 4, 3: 9, 4: 16}
+>>> new_dic.items()
+dict_items([(1, 1), (2, 4), (3, 9), (4, 16)])
+>>> [(item[1], item[2]) for item in new_dic.items()]
+Traceback (most recent call last):
+  File "<pyshell#24>", line 1, in <module>
+    [(item[1], item[2]) for item in new_dic.items()]
+  File "<pyshell#24>", line 1, in <listcomp>
+    [(item[1], item[2]) for item in new_dic.items()]
+IndexError: tuple index out of range
+>>> [(item[1], item[0]) for item in new_dic.items()]
+[(1, 1), (4, 2), (9, 3), (16, 4)]
+>>> [item[::-1] for item in new_dic.items()]
+[(1, 1), (4, 2), (9, 3), (16, 4)]
+>>> 
+>>> [i for i in range(10)]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> [i for i in range(3, 19, 2)]
+[3, 5, 7, 9, 11, 13, 15, 17]
+>>> [i for i in range(3, 19) if i%2 == 0]
+[4, 6, 8, 10, 12, 14, 16, 18]
+>>> [word if word.istitle() else '_'+word+' ' for word in 'хочецца умереть Чутчут'.split()]
+['_хочецца ', '_умереть ', 'Чутчут']
+>>> [word if word.istitle() else '_'+word+'_' for word in 'хочецца умереть Чутчут'.split()]
+['_хочецца_', '_умереть_', 'Чутчут']
+>>> [word for word in 'Алиса в стране чудес'.split() if len(word) >3]
+['Алиса', 'стране', 'чудес']
+>>> [word for word in 'Алиса в стране чудес'.split() if len(re.findall('[аеёиоуыэюя]', word, re.IGNORECASE) >=3]
+     
+SyntaxError: invalid syntax
+>>> [word for word in 'Алиса в стране чудес'.split() if len(re.findall('[аеёиоуыэюя]', word, re.IGNORECASE) >=3)]
+     
+Traceback (most recent call last):
+  File "<pyshell#35>", line 1, in <module>
+    [word for word in 'Алиса в стране чудес'.split() if len(re.findall('[аеёиоуыэюя]', word, re.IGNORECASE) >=3)]
+  File "<pyshell#35>", line 1, in <listcomp>
+    [word for word in 'Алиса в стране чудес'.split() if len(re.findall('[аеёиоуыэюя]', word, re.IGNORECASE) >=3)]
+NameError: name 're' is not defined
+>>> 
+     
+>>> 'Длина слова {} равна {}'.format('чудес', '5')
+     
+'Длина слова чудес равна 5'
+>>> 
+ RESTART: C:/Users/пользователь/Desktop/study_docs/python/Day15 or so/class15.py 
+Как вас зовут? Killme
+Hello, Killme!
+>>> 
+     
+>>> 'Длина слова {0} равна {1}'.format('чудес', len('чудес'))
+     
+'Длина слова чудес равна 5'
+>>> 'Длина слова = {1} => слово {0}'.format('чудес', len('чудес'))
+     
+'Длина слова = 5 => слово чудес'
+>>> 'Длина слова = {1} => слово {0}'.format('чудес', len('"чудес"'))
+     
+'Длина слова = 7 => слово чудес'
+>>> 'Длина слова = {1} => слово "{0}"'.format('чудес', len('чудес'))
+     
+'Длина слова = 5 => слово "чудес"'
+>>> '{:_12}'.format('conditioner')
+     
+Traceback (most recent call last):
+  File "<pyshell#43>", line 1, in <module>
+    '{:_12}'.format('conditioner')
+ValueError: Invalid format specifier
+>>> '{:_<12}'.format('conditioner')
+     
+'conditioner_'
+>>> '{:>12}'.format('conditioner')
+     
+' conditioner'
+>>> '{:_>12}'.format('conditioner')
+     
+'_conditioner'
+>>> '{:^12}'.format('conditioner')
+     
+'conditioner '
+>>> '{:^12}'.format('zip')
+     
+'    zip     '
